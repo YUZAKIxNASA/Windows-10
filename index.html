@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 10 Professional Desktop Simulation</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dark-theme.css">
+    <link rel="stylesheet" href="css/light-theme.css">
+</head>
+<body>
+    <!-- Boot Screen -->
+    <div id="bootScreen" class="boot-screen">
+        <div class="boot-container">
+            <div class="bios-screen">
+                <div class="manufacturer-logo">WINDOWS 10</div>
+                <div class="boot-info">
+                    <p>Initializing System...</p>
+                    <p id="bootMessage">Starting up</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen hidden">
+        <div class="loading-container">
+            <div class="windows-logo">
+                <div class="logo-square"></div>
+                <div class="logo-square"></div>
+                <div class="logo-square"></div>
+                <div class="logo-square"></div>
+            </div>
+            <p>Windows 10</p>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Lock Screen -->
+    <div id="lockScreen" class="lock-screen hidden">
+        <div class="lock-background"></div>
+        <div class="lock-content">
+            <div class="lock-info">
+                <div class="time" id="lockTime">09:41</div>
+                <div class="date" id="lockDate">Thursday, September 30</div>
+            </div>
+            <div class="lock-wallpaper-info">
+                <p id="lockWallpaperInfo">Bing Gallery</p>
+            </div>
+        </div>
+        <div class="lock-input-container">
+            <div class="user-info">
+                <div class="user-avatar">👤</div>
+                <div class="user-name">User</div>
+            </div>
+            <p class="lock-hint">Press any key to continue</p>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen hidden">
+        <div class="login-background"></div>
+        <div class="login-container">
+            <div class="login-box">
+                <div class="user-avatar-large">👤</div>
+                <div class="user-name-large">User</div>
+                <div class="login-method-tabs">
+                    <button class="login-tab active" data-method="password">Password</button>
+                    <button class="login-tab" data-method="pin">PIN</button>
+                    <button class="login-tab" data-method="biometric">Face</button>
+                </div>
+                <div class="login-content">
+                    <div class="login-method active" id="passwordMethod">
+                        <input type="password" id="passwordInput" placeholder="Password" class="login-input">
+                        <button class="login-button" id="passwordLogin">→</button>
+                    </div>
+                    <div class="login-method" id="pinMethod">
+                        <input type="password" id="pinInput" placeholder="PIN" class="login-input" maxlength="6">
+                        <button class="login-button" id="pinLogin">→</button>
+                    </div>
+                    <div class="login-method" id="biometricMethod">
+                        <div class="biometric-scanner">
+                            <div class="face-detector"></div>
+                            <p>Looking for face...</p>
+                        </div>
+                        <button class="login-button" id="biometricLogin">Unlock</button>
+                    </div>
+                </div>
+                <div class="login-options">
+                    <button class="accessibility-button" title="Accessibility">🔧</button>
+                    <button class="shutdown-button" title="Power" id="loginPowerBtn">🔌</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Desktop Environment -->
+    <div id="desktopEnvironment" class="desktop-environment hidden">
+        
+        <!-- Desktop -->
+        <div id="desktop" class="desktop">
+            <div class="desktop-wallpaper" id="desktopWallpaper"></div>
+            <div class="desktop-icons" id="desktopIcons">
+                <!-- Icons will be dynamically generated -->
+            </div>
+            <div class="context-menu hidden" id="contextMenu">
+                <div class="context-item">🔄 Refresh</div>
+                <div class="context-divider"></div>
+                <div class="context-item">📁 New Folder</div>
+                <div class="context-item">📄 New File</div>
+                <div class="context-divider"></div>
+                <div class="context-item">📌 Pin to Taskbar</div>
+                <div class="context-item">🗂️ View</div>
+                <div class="context-divider"></div>
+                <div class="context-item">⚙️ Display Settings</div>
+            </div>
+        </div>
+
+        <!-- Taskbar -->
+        <div class="taskbar" id="taskbar">
+            <div class="taskbar-container">
+                <!-- Start Button -->
+                <button class="taskbar-start-btn" id="startBtn" title="Start">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z" fill="currentColor"/>
+                    </svg>
+                </button>
+
+                <!-- Search -->
+                <button class="taskbar-search" id="searchBtn" title="Search">
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M15.5 1h-8C6.12 1 5 2.12 5 3.5v17C5 21.88 6.12 23 7.5 23h8c1.38 0 2.5-1.12 2.5-2.5v-17C18 2.12 16.88 1 15.5 1zm-4 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5-4H7V4h9v14z" fill="currentColor"/>
+                    </svg>
+                </button>
+
+                <!-- Task View -->
+                <button class="taskbar-task-view" id="taskViewBtn" title="Task View">
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M3 5h6v6H3V5zm8 0h6v6h-6V5zm8 0h2v6h-2V5zM3 13h6v6H3v-6zm8 0h6v6h-6v-6zm8 0h2v6h-2v-6z" fill="currentColor"/>
+                    </svg>
+                </button>
+
+                <!-- Pinned Apps -->
+                <div class="taskbar-apps" id="taskbarApps">
+                    <!-- App icons will be generated here -->
+                </div>
+
+                <!-- System Tray -->
+                <div class="taskbar-system-tray" id="systemTray">
+                    <button class="tray-icon" id="wifiBtn" title="WiFi">📶</button>
+                    <button class="tray-icon" id="volumeBtn" title="Volume">🔊</button>
+                    <button class="tray-icon" id="brightnessBtn" title="Brightness">☀️</button>
+                    <button class="tray-icon" id="batteryBtn" title="Battery">🔋</button>
+                    <div class="clock" id="taskbarClock">09:41</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start Menu -->
+        <div class="start-menu hidden" id="startMenu">
+            <div class="start-menu-container">
+                <div class="start-menu-left">
+                    <div class="start-search-bar">
+                        <input type="text" id="startSearchInput" placeholder="Type here to search" class="start-search-input">
+                    </div>
+                    <div class="start-pinned">
+                        <div class="start-section-title">Pinned</div>
+                        <div class="start-apps-grid" id="startPinned">
+                            <!-- Pinned apps -->
+                        </div>
+                    </div>
+                    <div class="start-recommended">
+                        <div class="start-section-title">Recommended</div>
+                        <div class="start-recommended-list" id="startRecommended">
+                            <!-- Recommended apps -->
+                        </div>
+                    </div>
+                </div>
+                <div class="start-menu-right">
+                    <div class="start-user-section">
+                        <div class="user-tile">
+                            <div class="user-avatar-tile">👤</div>
+                            <div class="user-name-tile">User</div>
+                        </div>
+                    </div>
+                    <div class="start-shortcuts">
+                        <button class="start-shortcut" id="startSettings">⚙️ Settings</button>
+                        <button class="start-shortcut" id="startPower">🔌 Power</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Settings Panel -->
+        <div class="quick-settings-panel hidden" id="quickSettings">
+            <div class="quick-settings-header">
+                <h3>Quick Settings</h3>
+                <button class="close-button">×</button>
+            </div>
+            <div class="quick-settings-grid">
+                <div class="quick-toggle" data-toggle="wifi">
+                    <div class="toggle-icon">📶</div>
+                    <div class="toggle-label">WiFi</div>
+                </div>
+                <div class="quick-toggle" data-toggle="bluetooth">
+                    <div class="toggle-icon">🔵</div>
+                    <div class="toggle-label">Bluetooth</div>
+                </div>
+                <div class="quick-toggle" data-toggle="airplane">
+                    <div class="toggle-icon">✈️</div>
+                    <div class="toggle-label">Airplane Mode</div>
+                </div>
+                <div class="quick-toggle" data-toggle="focus">
+                    <div class="toggle-icon">🚫</div>
+                    <div class="toggle-label">Focus</div>
+                </div>
+            </div>
+            <div class="quick-settings-sliders">
+                <div class="slider-item">
+                    <span>Brightness</span>
+                    <input type="range" min="0" max="100" value="100" class="brightness-slider">
+                </div>
+                <div class="slider-item">
+                    <span>Volume</span>
+                    <input type="range" min="0" max="100" value="70" class="volume-slider">
+                </div>
+            </div>
+        </div>
+
+        <!-- Window Container -->
+        <div class="window-container" id="windowContainer">
+            <!-- Windows will be created here -->
+        </div>
+
+        <!-- Notification Container -->
+        <div class="notification-container" id="notificationContainer">
+            <!-- Notifications will appear here -->
+        </div>
+
+        <!-- Context Menu -->
+        <div class="context-menu hidden" id="desktopContextMenu">
+            <div class="context-menu-item" data-action="refresh">🔄 Refresh</div>
+            <div class="context-menu-divider"></div>
+            <div class="context-menu-item" data-action="new-folder">📁 New Folder</div>
+            <div class="context-menu-item" data-action="new-file">📄 New File</div>
+            <div class="context-menu-divider"></div>
+            <div class="context-menu-item" data-action="display-settings">⚙️ Display Settings</div>
+        </div>
+
+    </div>
+
+    <!-- Power Menu -->
+    <div class="power-menu hidden" id="powerMenu">
+        <div class="power-menu-options">
+            <button class="power-option sleep-btn">
+                <span>Sleep</span>
+            </button>
+            <button class="power-option shutdown-btn">
+                <span>Shut down</span>
+            </button>
+            <button class="power-option restart-btn">
+                <span>Restart</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Shutdown Screen -->
+    <div id="shutdownScreen" class="shutdown-screen hidden">
+        <div class="shutdown-container">
+            <p>Shutting down...</p>
+            <div class="shutdown-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/utils/constants.js"></script>
+    <script src="js/utils/helpers.js"></script>
+    <script src="js/core/theme.js"></script>
+    <script src="js/core/boot.js"></script>
+    <script src="js/core/window-manager.js"></script>
+    <script src="js/desktop/desktop.js"></script>
+    <script src="js/desktop/taskbar.js"></script>
+    <script src="js/desktop/startmenu.js"></script>
+    <script src="js/applications/calculator.js"></script>
+    <script src="js/applications/notepad.js"></script>
+    <script src="js/applications/file-explorer.js"></script>
+    <script src="js/applications/settings.js"></script>
+    <script src="js/applications/paint.js"></script>
+    <script src="js/applications/terminal.js"></script>
+    <script src="js/applications/task-manager.js"></script>
+    <script src="js/core/app.js"></script>
+</body>
+</html>
