@@ -1,0 +1,286 @@
+/* Fluent Design System - Windows 10 UI */
+
+/* Fluent Button */
+.fluent-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background-color: transparent;
+  color: var(--text-primary);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.fluent-button:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.fluent-button:active {
+  background-color: var(--bg-secondary);
+}
+
+.fluent-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Fluent Primary Button */
+.fluent-button-primary {
+  background-color: var(--primary-blue);
+  color: white;
+  border-color: var(--primary-blue);
+}
+
+.fluent-button-primary:hover {
+  background-color: var(--primary-blue-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.fluent-button-primary:active {
+  background-color: var(--primary-blue-active);
+}
+
+/* Fluent Outline Button */
+.fluent-button-outline {
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+}
+
+.fluent-button-outline:hover {
+  border-color: var(--text-primary);
+  background-color: var(--bg-secondary);
+}
+
+/* Fluent Subtle Button */
+.fluent-button-subtle {
+  background-color: transparent;
+  color: var(--primary-blue);
+}
+
+.fluent-button-subtle:hover {
+  background-color: rgba(0, 120, 212, 0.1);
+}
+
+/* Fluent Input */
+.fluent-input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  font-family: var(--font-family-base);
+  transition: all var(--transition-fast);
+}
+
+.fluent-input:focus {
+  border-color: var(--primary-blue);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.1);
+}
+
+.fluent-input:hover:not(:focus) {
+  border-color: var(--text-tertiary);
+}
+
+.fluent-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Fluent Card */
+.fluent-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-fast);
+}
+
+.fluent-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-blue);
+}
+
+/* Fluent Menu Item */
+.fluent-menu-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+}
+
+.fluent-menu-item:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.fluent-menu-item.active {
+  background-color: rgba(0, 120, 212, 0.15);
+  color: var(--primary-blue);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Fluent Divider */
+.fluent-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: var(--spacing-md) 0;
+}
+
+/* Fluent Badge */
+.fluent-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 var(--spacing-sm);
+  background-color: var(--accent-red);
+  color: white;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+.fluent-badge.success {
+  background-color: var(--accent-green);
+}
+
+.fluent-badge.warning {
+  background-color: var(--accent-orange);
+}
+
+.fluent-badge.info {
+  background-color: var(--primary-blue);
+}
+
+/* Fluent Toggle */
+.fluent-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.fluent-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.fluent-toggle .toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast);
+}
+
+.fluent-toggle .toggle-switch::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--bg-secondary);
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: left var(--transition-fast);
+}
+
+.fluent-toggle input[type="checkbox"]:checked + .toggle-switch {
+  background-color: var(--primary-blue);
+}
+
+.fluent-toggle input[type="checkbox"]:checked + .toggle-switch::after {
+  left: 22px;
+}
+
+/* Fluent Dropdown */
+.fluent-dropdown {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.fluent-dropdown-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.fluent-dropdown-button:hover {
+  border-color: var(--text-tertiary);
+}
+
+.fluent-dropdown-button.active {
+  border-color: var(--primary-blue);
+}
+
+.fluent-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-dropdown);
+  margin-top: var(--spacing-xs);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: scaleY(0.95);
+  transform-origin: top;
+  transition: all var(--transition-fast);
+}
+
+.fluent-dropdown-menu.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scaleY(1);
+}
+
+.fluent-dropdown-item {
+  padding: var(--spacing-md) var(--spacing-lg);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  font-size: var(--font-size-md);
+}
+
+.fluent-dropdown-item:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.fluent-dropdown-item.active {
+  background-color: rgba(0, 120, 212, 0.15);
+  color: var(--primary-blue);
+}
+
+/* Focus State Accessibility */
+.fluent-button:focus-visible,
+.fluent-input:focus-visible,
+.fluent-menu-item:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}

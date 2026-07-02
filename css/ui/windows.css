@@ -1,0 +1,212 @@
+/* Window Component Styling */
+
+.windows-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: var(--z-base);
+}
+
+.window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  min-width: 300px;
+  min-height: 200px;
+  z-index: var(--z-modal);
+  animation: slideInUp var(--transition-base);
+}
+
+.window.active {
+  z-index: calc(var(--z-modal) + 100);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.window.minimizing {
+  animation: minimizeWindow 300ms ease-in forwards;
+}
+
+.window.closing {
+  animation: fadeOut 200ms ease-in forwards;
+}
+
+/* Window Title Bar */
+.window-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-primary));
+  border-bottom: 1px solid var(--border-color);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  cursor: move;
+  gap: var(--spacing-md);
+}
+
+.window-titlebar.dragging {
+  opacity: 0.8;
+}
+
+.window-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.window-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+}
+
+.window-controls {
+  display: flex;
+  gap: var(--spacing-xs);
+  -webkit-app-region: no-drag;
+}
+
+.window-control-btn {
+  width: 36px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: var(--font-size-md);
+}
+
+.window-control-btn:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.window-control-btn.close:hover {
+  background-color: #e81123;
+  color: white;
+}
+
+.window-control-btn:active {
+  background-color: var(--bg-secondary);
+}
+
+/* Window Content */
+.window-content {
+  flex: 1;
+  overflow: auto;
+  padding: var(--spacing-lg);
+  color: var(--text-primary);
+}
+
+.window-content::-webkit-scrollbar {
+  width: 12px;
+}
+
+.window-content::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.window-content::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.window-content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Window Footer */
+.window-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+}
+
+/* Window Resize Handle */
+.window-resize {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  cursor: se-resize;
+  -webkit-app-region: no-drag;
+}
+
+.window-resize::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid var(--text-tertiary);
+  opacity: 0.5;
+}
+
+.window-resize:hover::after {
+  opacity: 0.8;
+}
+
+/* Maximized Window */
+.window.maximized {
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* Minimized Window (Hidden) */
+.window.minimized {
+  display: none;
+}
+
+/* Accessibility: Focus Visible */
+.window-control-btn:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: -2px;
+}
+
+/* Responsive Window Sizes */
+@media (max-width: 768px) {
+  .window {
+    min-width: 200px;
+    min-height: 150px;
+  }
+  
+  .window-titlebar {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .window-control-btn {
+    width: 32px;
+    height: 28px;
+  }
+}
