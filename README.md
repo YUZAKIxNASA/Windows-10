@@ -1,5 +1,7 @@
 # Windows 10 Professional Desktop Simulation
 
+link - yuzakixnasa.github.io/Windows-10/
+
 A complete, educational HTML5/CSS3/JavaScript simulation of Windows 10 desktop environment. 100% original code, no external dependencies, fully functional offline.
 
 ## Project Structure
