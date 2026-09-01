@@ -35,6 +35,11 @@
   animation: fadeOut 200ms ease-in forwards;
 }
 
+.window.dragging {
+  opacity: 0.95;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+}
+
 /* Window Title Bar */
 .window-titlebar {
   display: flex;
@@ -48,6 +53,9 @@
   -webkit-app-region: drag;
   cursor: move;
   gap: var(--spacing-md);
+  /* Enable pointer events for drag detection while preventing text selection */
+  touch-action: none;
+  -webkit-touch-callout: none;
 }
 
 .window-titlebar.dragging {
@@ -62,6 +70,7 @@
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
   color: var(--text-primary);
+  pointer-events: none;
 }
 
 .window-icon {
@@ -92,6 +101,9 @@
   cursor: pointer;
   transition: all var(--transition-fast);
   font-size: var(--font-size-md);
+  touch-action: auto;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .window-control-btn:hover {
@@ -113,6 +125,8 @@
   overflow: auto;
   padding: var(--spacing-lg);
   color: var(--text-primary);
+  /* Allow normal scrolling in content area */
+  touch-action: auto;
 }
 
 .window-content::-webkit-scrollbar {
@@ -174,9 +188,9 @@
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  bottom: 0 !important;
+  bottom: 48px !important; /* Account for taskbar height */
   width: 100% !important;
-  height: 100% !important;
+  height: calc(100% - 48px) !important;
   max-width: none !important;
   max-height: none !important;
   border-radius: 0;
@@ -194,11 +208,11 @@
   outline-offset: -2px;
 }
 
-/* Responsive Window Sizes */
-@media (max-width: 768px) {
+/* Responsive Window Sizes for Tablet */
+@media (max-width: 900px) {
   .window {
-    min-width: 200px;
-    min-height: 150px;
+    min-width: 250px;
+    min-height: 180px;
   }
   
   .window-titlebar {
@@ -208,5 +222,63 @@
   .window-control-btn {
     width: 32px;
     height: 28px;
+    font-size: var(--font-size-sm);
+  }
+
+  .window-title {
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Responsive Window Sizes for Mobile */
+@media (max-width: 600px) {
+  .window {
+    min-width: 200px;
+    min-height: 150px;
+    border-radius: var(--radius-md);
+  }
+  
+  .window-titlebar {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+  
+  .window-title {
+    font-size: var(--font-size-xs);
+  }
+
+  .window-icon {
+    width: 16px;
+    height: 16px;
+    font-size: var(--font-size-md);
+  }
+  
+  .window-control-btn {
+    width: 28px;
+    height: 24px;
+    font-size: var(--font-size-xs);
+  }
+
+  .window-content {
+    padding: var(--spacing-md);
+  }
+}
+
+/* Very Small Mobile - Near Fullscreen */
+@media (max-width: 390px) {
+  .window {
+    min-width: 100%;
+    min-height: 80%;
+  }
+}
+
+/* Landscape Mobile Adjustments */
+@media (max-height: 500px) {
+  .window-titlebar {
+    padding: var(--spacing-xs) var(--spacing-md);
+  }
+
+  .window {
+    min-height: 120px;
   }
 }
