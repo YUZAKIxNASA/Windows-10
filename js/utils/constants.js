@@ -62,7 +62,8 @@ const CONSTANTS = {
     CLOCK: 'clock',
     CALENDAR: 'calendar',
     WEATHER: 'weather',
-    SNIPPING_TOOL: 'snipping-tool'
+    SNIPPING_TOOL: 'snipping-tool',
+    BROWSER: 'browser'
   },
   
   // Desktop Icons
@@ -80,6 +81,7 @@ const CONSTANTS = {
     { id: 'notepad', name: 'Notepad', icon: '📝', app: 'notepad' },
     { id: 'paint', name: 'Paint', icon: '🎨', app: 'paint' },
     { id: 'settings', name: 'Settings', icon: '⚙️', app: 'settings' },
+    { id: 'browser', name: 'Browser', icon: '🌐', app: 'browser' }
   ],
   
   // Default Wallpapers (using gradients as fallback)
