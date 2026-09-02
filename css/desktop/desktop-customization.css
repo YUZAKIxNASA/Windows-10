@@ -1,0 +1,30 @@
+/* Desktop Customization CSS - css/desktop/desktop-customization.css */
+
+/* Free position mode styling */
+.desktop-icons.free-position-mode {
+  display: block !important;
+  grid-template-columns: unset !important;
+  gap: unset !important;
+  position: relative;
+}
+
+.desktop-icons.free-position-mode .desktop-icon-item {
+  position: absolute !important;
+  transition: none;
+}
+
+.desktop-icon-item.dragging {
+  opacity: 0.8;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* Ensure desktop icon items are within bounds */
+.desktop-icon-item {
+  box-sizing: content-box;
+}
+
+/* Icon visibility helpers */
+.desktop-icon-item.hidden {
+  display: none !important;
+}
