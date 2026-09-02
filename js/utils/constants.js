@@ -63,7 +63,8 @@ const CONSTANTS = {
     CALENDAR: 'calendar',
     WEATHER: 'weather',
     SNIPPING_TOOL: 'snipping-tool',
-    BROWSER: 'browser'
+    BROWSER: 'browser',
+    DESKTOP_CUSTOMIZATION: 'desktop-customization'
   },
   
   // Desktop Icons
@@ -145,7 +146,8 @@ const CONSTANTS = {
     WALLPAPER: 'windows10_wallpaper',
     SETTINGS: 'windows10_settings',
     LOGGED_IN: 'windows10_logged_in',
-    WINDOW_POSITIONS: 'windows10_window_positions'
+    WINDOW_POSITIONS: 'windows10_window_positions',
+    DESKTOP_LAYOUT: 'windows10_desktop_layout'
   }
 };
 
