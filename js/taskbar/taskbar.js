@@ -53,6 +53,10 @@ class Taskbar {
         if (!window.settingsApp) new SettingsApp();
         else window.settingsApp.focus();
         break;
+      case CONSTANTS.APPS.BROWSER:
+        if (!window.browserApp) new BrowserApp();
+        else window.browserApp.focus();
+        break;
     }
   }
 
