@@ -54,9 +54,22 @@ class Taskbar {
         else window.settingsApp.focus();
         break;
       case CONSTANTS.APPS.BROWSER:
-        if (!window.browserApp) new BrowserApp();
-        else window.browserApp.focus();
+        // Browser exposes a launcher and sets window.browserApp when created.
+        if (window.browserApp) {
+          try { window.browserApp.focus(); } catch (e) { /* defensive */ }
+        } else if (typeof window.LaunchBrowserApp === 'function') {
+          try { window.LaunchBrowserApp(app); } catch (e) { console.warn('Browser launcher failed', e); }
+        } else {
+          console.warn('Browser launcher not available yet');
+        }
         break;
+      default:
+        // Unknown app id - try to call a launcher function if present
+        if (typeof window[`Launch${HELPERS.capitalize(app.app)}App`] === 'function') {
+          try { window[`Launch${HELPERS.capitalize(app.app)}App`](app); } catch (e) { console.warn('Launcher failed', e); }
+        } else {
+          console.warn('No launcher for', app.app);
+        }
     }
   }
 
